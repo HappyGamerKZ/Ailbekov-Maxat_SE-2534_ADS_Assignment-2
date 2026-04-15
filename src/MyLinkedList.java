@@ -64,11 +64,11 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
     }
     @Override
     public void addFirst(T item){
+        MyNode newNode = new MyNode(item, head, null);
         if (head == null){
-            head = new MyNode(item, null, null);
-            tail = head;
+            head = newNode;
+            tail = newNode;
         }else{
-            MyNode newNode = new MyNode(item, head, null);
             head.prev = newNode;
             head = newNode;
         }
@@ -76,9 +76,9 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
     }
     @Override
     public void addLast(T item){
-        MyNode newNode = new MyNode(item, null, null);
+        MyNode newNode = new MyNode(item, null, tail);
         if (tail == null){
-            head = new MyNode(item, null, null);
+            head = newNode;
         }else{
             tail.next = newNode;
         }
