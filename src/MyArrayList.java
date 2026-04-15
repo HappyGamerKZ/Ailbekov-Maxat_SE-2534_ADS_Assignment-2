@@ -1,5 +1,4 @@
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
     private Object[] elements;
@@ -169,7 +168,7 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
             @Override
             public T next() {
                 if (!hasNext()) {
-                    throw new NoSuchElementException();
+                    throw new IndexOutOfBoundsException("List is empty");
                 }
                 return (T) elements[index++];
             }

@@ -1,5 +1,4 @@
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
     private class MyNode{
@@ -99,16 +98,14 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
     @Override
     public T getFirst(){
         if (head == null){
-            throw new NoSuchElementException();
-        }
+            throw new IndexOutOfBoundsException("List is empty");        }
         return head.element;
     }
 
     @Override
     public T getLast(){
         if (tail == null){
-            throw new NoSuchElementException();
-        }
+            throw new IndexOutOfBoundsException("List is empty");        }
         return tail.element;
     }
 
@@ -137,8 +134,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
     @Override
     public void removeFirst(){
         if (head == null){
-            throw new NoSuchElementException();
-        }
+            throw new IndexOutOfBoundsException("List is empty");        }
         if (head.next == null){
             head = null;
             tail = null;
@@ -151,8 +147,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
     @Override
     public void removeLast(){
         if (tail == null){
-            throw new NoSuchElementException();
-        }
+            throw new IndexOutOfBoundsException("List is empty");        }
         if (head == tail){
             head = null;
             tail = null;
@@ -167,9 +162,9 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
         if (size > 1){
             boolean wasChanged;
             do{
-                MyNode current = Head;
+                MyNode current = head;
                 wasChanged = false;
-                while (current.mext != null){
+                while (current.next != null){
                     if (current.element.compareTo(current.next.element) > 0){
                         T temp = current.element;
                         current.element = current.next.element;
@@ -178,7 +173,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
                     }
                     current = current.next;
                 }
-            } while (wasChanged)
+            } while (wasChanged);
         }
     }
     @Override
@@ -236,7 +231,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             private MyNode current = head;
 
             @Override
@@ -246,7 +241,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
             @Override
             public T next() {
-                if (!hasNext()) throw new NoSuchElementException();
+                if (!hasNext()) throw new IndexOutOfBoundsException("List is empty");
                 T item = current.element;
                 current = current.next;
                 return item;

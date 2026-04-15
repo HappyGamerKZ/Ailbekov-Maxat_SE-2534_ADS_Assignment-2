@@ -1,8 +1,7 @@
-public class MyStack<T extends Comparable<T>> {
-
+public class MyQueue<T extends Comparable<T>> {
     private MyLinkedList<T> list;
 
-    public MyStack(){
+    public MyQueue(){
         this.list = new MyLinkedList<>();
     }
 
@@ -16,21 +15,20 @@ public class MyStack<T extends Comparable<T>> {
 
     public T peak(){
         if (empty()){
-            throw new IndexOutOfBoundsException("Stack is empty");
+            throw new IndexOutOfBoundsException("Queue is empty");
         }
         return list.getFirst();
     }
-
-    public void push(T item){
-        list.addFirst(item);
+    public void enqueue(T item){
+        list.addLast(item);
     }
 
-    public T pop(){
+    public T dequeue(){
         if (empty()){
-            throw new IndexOutOfBoundsException("Stack is empty");
+            throw new IndexOutOfBoundsException("Queue is empty");
         }
-        T topElement = list.getFirst();
+        T frontElement = list.getFirst();
         list.removeFirst();
-        return topElement;
+        return frontElement;
     }
 }
