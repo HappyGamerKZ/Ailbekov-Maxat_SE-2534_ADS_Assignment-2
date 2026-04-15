@@ -130,6 +130,7 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
         return -1;
     }
 
+    @Override
     public boolean exists(Object Object) {
         return indexOf(Object) != -1;
     }
