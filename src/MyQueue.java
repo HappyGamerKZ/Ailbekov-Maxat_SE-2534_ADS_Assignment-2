@@ -13,7 +13,7 @@ public class MyQueue<T extends Comparable<T>> {
         return list.size();
     }
 
-    public T peak(){
+    public T peek(){
         if (empty()){
             throw new IndexOutOfBoundsException("Queue is empty");
         }

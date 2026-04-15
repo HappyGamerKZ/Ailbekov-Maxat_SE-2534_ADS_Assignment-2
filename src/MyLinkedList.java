@@ -72,6 +72,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
             head.prev = newNode;
             head = newNode;
         }
+        size++;
     }
     @Override
     public void addLast(T item){
